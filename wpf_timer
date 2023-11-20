@@ -1,0 +1,50 @@
+using System;
+using System.Windows;
+using System.Windows.Threading;
+
+namespace TuAplicativoWPF
+{
+    public partial class MainWindow : Window
+    {
+        private int ganados = 0;
+        private int perdidos = 0;
+        private int suma = 0;
+        private int total = 35:
+        private readonly DispatcherTimer timer = new DispatcherTimer();
+
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            // Inicializar el DispatcherTimer
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // Incrementar los valores
+            ganados++;
+            int numeroAleatorioEnRango = random.Next(0, 100);
+            if(numeroAleatorioEnRango < 8) {
+                perdidos = total - ganados;
+            }
+            perdidos++;
+            suma = ganados + perdidos;
+            // Mostrar los números generados
+            MessageBox.Show($"Número 1: {numero1}\nNúmero 2: {numero2}", "Números Generados");
+
+            // Puedes detener el temporizador después de cierto límite si es necesario
+            if (suma == 35)
+            {
+                timer.Stop();
+            }
+        }
+
+        private void ButtonIniciar_Click(object sender, RoutedEventArgs e)
+        {
+            // Iniciar el timer cuando se hace clic en el botón
+            timer.Start();
+        }
+    }
+}
